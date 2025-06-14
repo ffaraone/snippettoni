@@ -28,25 +28,31 @@ $ snippettoni --help
 
  Usage: snippettoni [OPTIONS] SPEC_PATH
 
-╭─ Arguments ────────────────────────────────────────────────────────────────────────────────────────╮
-│ *    spec_path      PATH  Path to OpenAPI spec YAML or JSON file. [default: None] [required]       │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────╮
-│ --base-url                  TEXT  Base URL for code examples. [default: None]                      │
-│ --lang                      TEXT  Languages to generate (e.g. --lang python --lang curl).Default   │
-│                                   is all templates in directory.                                   │
-│                                   [default: None]                                                  │
-│ --template                  TEXT  Override or add templates per language, e.g. --template          │
-│                                   lang:path                                                        │
-│                                   [default: None]                                                  │
-│ --output                    PATH  Optional output file path. Defaults to stdout in same format as  │
-│                                   input.                                                           │
-│                                   [default: None]                                                  │
-│ --install-completion              Install completion for the current shell.                        │
-│ --show-completion                 Show completion for the current shell, to copy it or customize   │
-│                                   the installation.                                                │
-│ --help                            Show this message and exit.                                      │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Arguments ─────────────────────────────────────────────────────────────╮
+│ *    spec_path      PATH  Path to OpenAPI spec YAML or JSON file.       │
+│                           [default: None]                               │
+│                           [required]                                    │
+╰─────────────────────────────────────────────────────────────────────────╯
+╭─ Options ───────────────────────────────────────────────────────────────╮
+│ --base-url                  TEXT  Base URL for code examples.           │
+│                                   [default: None]                       │
+│ --lang                      TEXT  Languages to generate (e.g. --lang    │
+│                                   python --lang curl).Default is all    │
+│                                   templates in directory.               │
+│                                   [default: None]                       │
+│ --template                  TEXT  Override or add templates per         │
+│                                   language, e.g. --template lang:path   │
+│                                   [default: None]                       │
+│ --output                    PATH  Optional output file path. Defaults   │
+│                                   to stdout in same format as input.    │
+│                                   [default: None]                       │
+│ --install-completion              Install completion for the current    │
+│                                   shell.                                │
+│ --show-completion                 Show completion for the current       │
+│                                   shell, to copy it or customize the    │
+│                                   installation.                         │
+│ --help                            Show this message and exit.           │
+╰─────────────────────────────────────────────────────────────────────────╯
 
 ```
 
