@@ -5,7 +5,7 @@ from jinja2 import Environment, FileSystemLoader, Template, select_autoescape
 
 
 class SnippetRenderer:
-    TEMPLATE_DIR = Path(__file__).resolve().parent.parent / "templates"
+    TEMPLATE_DIR = Path(__file__).resolve().parent / "templates"
     ENV = Environment(
         loader=FileSystemLoader(TEMPLATE_DIR),
         autoescape=select_autoescape(),
