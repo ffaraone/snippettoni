@@ -43,12 +43,25 @@ class SnippetRenderer:
             + list(self.external_templates.keys())
         )
 
-    def get_snippets(self, context: dict[str, str]) -> dict[str, str]:
+    def get_snippets(
+        self,
+        method: str,
+        url: str,
+        headers: dict[str, str] | None,
+        body: dict[str, Any] | None,
+    ) -> dict[str, str]:
         snippets = {}
         for language in self.languages:
             if language in self.external_templates:
                 template = self.external_templates[language]
             else:
                 template = self.ENV.get_template(f"{language}.j2")
-            snippets[language] = template.render(context)
+            snippets[language] = template.render(
+                {
+                    "method": method,
+                    "url": url,
+                    "headers": headers,
+                    "body": body,
+                }
+            )
         return snippets

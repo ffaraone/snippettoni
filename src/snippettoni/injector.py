@@ -2,6 +2,7 @@ from pathlib import Path
 from typing import Any
 
 from prance import ResolvingParser
+from prance.util.resolver import RefResolver
 
 from snippettoni.renderer import SnippetRenderer
 
@@ -98,7 +99,7 @@ def get_base_url_from_servers(spec):
 
 
 def inject_code_samples(
-    source: Path | str,
+    source: Path | str | dict,
     renderer: SnippetRenderer,
     base_url: str | None = None,
 ) -> Any:
@@ -106,14 +107,19 @@ def inject_code_samples(
         "lazy": True,
         "strict": False,
     }
-    if isinstance(source, Path):
-        options["url"] = str(source.resolve())
+    if isinstance(source, dict):
+        resolver = RefResolver(source, url="/", strict=False)
+        resolver.resolve_references()
+        spec = resolver.specs
     else:
-        options["spec_string"] = source
+        if isinstance(source, Path):
+            options["url"] = str(source.resolve())
+        else:
+            options["spec_string"] = source
 
-    parser = ResolvingParser(**options)
-    parser.parse()
-    spec = parser.specification
+        parser = ResolvingParser(**options)
+        parser.parse()
+        spec = parser.specification
 
     if not base_url:
         base_url = get_base_url_from_servers(spec)
@@ -146,7 +152,7 @@ def inject_code_samples(
                 "headers": headers,
                 "body": example_body,
             }
-            snippets = renderer.get_snippets(context)
+            snippets = renderer.get_snippets(**context)
 
             for lang, rendered in snippets.items():
                 op["x-codeSamples"].append(
