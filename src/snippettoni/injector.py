@@ -98,11 +98,20 @@ def get_base_url_from_servers(spec):
 
 
 def inject_code_samples(
-    spec_path: Path,
+    source: Path | str,
     renderer: SnippetRenderer,
     base_url: str | None = None,
 ) -> Any:
-    parser = ResolvingParser(str(spec_path.resolve()), lazy=True, strict=False)
+    options: dict[str, Any] = {
+        "lazy": True,
+        "strict": False,
+    }
+    if isinstance(source, Path):
+        options["url"] = str(source.resolve())
+    else:
+        options["spec_string"] = source
+
+    parser = ResolvingParser(**options)
     parser.parse()
     spec = parser.specification
 

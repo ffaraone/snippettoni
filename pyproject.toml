@@ -65,6 +65,7 @@ output-format = "full"
 cache-dir = ".cache/ruff"
 
 [tool.ruff.lint]
+preview = true
 select = [
     "E",  # w errors
     "W",  # pycodestyle warnings
